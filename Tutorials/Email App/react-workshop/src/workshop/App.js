@@ -81,7 +81,10 @@ export default class App extends Component {
   _handleItemDelete = (emailId) => {
     this.setState(({emails}) => ({
       // Delete the email by returning a filtered list that doesn't included it
-      emails: emails.filter(email => email.id !== emailId)
+      emails: emails.filter(email => email.id !== emailId),
+
+      // Reset selectedEmailId since we are deleting it
+      selectedEmailId: -1
     }));
   }
 
@@ -95,6 +98,7 @@ export default class App extends Component {
         <EmailView
           email={selectedEmail}
           onClose={this._handleEmailViewClose}
+          onDelete={this._handleItemDelete.bind(this, selectedEmailId)}
         />
       );
     }
