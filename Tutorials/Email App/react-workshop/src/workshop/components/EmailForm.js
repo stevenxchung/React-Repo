@@ -1,24 +1,46 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import './EmailForm.css';
 
+const DEFAULT_FORM_VALUES = {
+  from: "",
+  to: "someone@gmail.com",
+  subject: "",
+  message: ""
+}
+
 export default class EmailForm extends Component {
-  state = {
-    from: "",
-    to: "someone@.gmail.com",
-    subject: "",
-    message: ""
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired
   }
+
+  state = DEFAULT_FORM_VALUES;
 
   _updateFormFieldState = (name, e) => {
     this.setState({[name]: e.target.value});
+  }
+
+  _handleSubmit = (e) => {
+    e.preventDefault();
+
+    let {from, to, subject, message} = this.state;
+
+    if (from && to && subject && message) {
+      // Call handler with email info
+      this.props.onSubmit({from, to, subject, message});
+      // Reset form to initial values
+      this.setState(DEFAULT_FORM_VALUES);
+    } else {
+      alert("Fill out the form!");
+    }
   }
 
   render() {
     let {from, to, subject, message} = this.state;
 
     return (
-      <form className="email-form">
+      <form className="email-form" onSubmit={this._handleSubmit}>
         <fieldset>
           <label htmlFor="from">From:</label>
           <input
@@ -58,6 +80,10 @@ export default class EmailForm extends Component {
             onChange={this._updateFormFieldState.bind(this, "message")}
           />
         </fieldset>
+
+        <footer>
+          <button type="submit">Send email</button>
+        </footer>
       </form>
     );
   }
