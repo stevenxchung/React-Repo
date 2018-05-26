@@ -44,25 +44,43 @@ const EMAILS = [
   },
 ];
 
-// Initialize selected email to -1 to indicate that nothing is selected
 export default class App extends Component {
   state = {
+    // Initialize email state to EMAILS constant
+    emails: EMAILS,
+    // Initialize selected email to -1 to indicate that nothing is selected
     selectedEmailId: -1
   }
 
-  // Update state (show EmailView)
   _handleItemSelect = (selectedEmailId) => {
+     // Update state (show EmailView)
     this.setState({selectedEmailId});
   }
 
-  // Close the email by resetting the selected email
   _handleEmailViewClose = () => {
+    // Close the email by resetting the selected email
     this.setState({selectedEmailId: -1});
   }
 
+  _handleFormSubmit = (newEmail) => {
+    this.setState(({emails}) => {
+      // Create a full email info by spreading in id then spread to front of emails state (newest)
+      let newEmails = [
+        {
+          ...newEmail,
+          id: Date.now(),
+          date: `${new Date()}`
+        },
+        ...emails
+      ];
+      // Set state with new updated emails list
+      return {emails: newEmails};
+    });
+  }
+
   render () {
-    let {selectedEmailId} = this.state;
-    let selectedEmail = EMAILS.find(email => email.id === selectedEmailId);
+    let {emails, selectedEmailId} = this.state;
+    let selectedEmail = emails.find(email => email.id === selectedEmailId);
     let emailViewComponent;
 
     if (selectedEmail) {
@@ -77,11 +95,11 @@ export default class App extends Component {
     return (
       <main className="app">
         <EmailList
-          emails={EMAILS}
+          emails={emails}
           onItemSelect={this._handleItemSelect}
         />
         {emailViewComponent}
-        <EmailForm />
+        <EmailForm onSubmit={this._handleFormSubmit} />
       </main>
     )
   }
