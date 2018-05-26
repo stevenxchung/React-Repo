@@ -9,6 +9,7 @@ import './EmailListItem.css';
 export default class EmailListItem extends Component {
   static propTypes = {
     email: EMAIL_PROP_TYPE.isRequired,
+    onDelete: PropTypes.func.isRequired,
     onSelect: PropTypes.func
   }
 
@@ -21,6 +22,11 @@ export default class EmailListItem extends Component {
     }
   }
 
+  _handleDelete = (e) => {
+    e.stopPropagation();
+    this.props.onDelete(this.props.email.id);
+  }
+
   render() {
     let {email: {from, subject}} = this.props;
 
@@ -28,6 +34,7 @@ export default class EmailListItem extends Component {
       <div className="email-list-item" onClick={this._handleClick}>
         <span>{from}</span>
         <span>{subject}</span>
+        <button onClick={this._handleDelete}>Delete</button>
       </div>
     );
   }
