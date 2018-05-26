@@ -9,16 +9,22 @@ import './EmailList.css';
 
 export default class EmailList extends Component {
   static propTypes = {
-    emails: PropTypes.arrayOf(EMAIL_PROP_TYPE)
+    emails: PropTypes.arrayOf(EMAIL_PROP_TYPE),
+    onItemDelete: PropTypes.func.isRequired,
+    onItemSelect: PropTypes.func.isRequired
   }
 
   render() {
-    let {emails, onItemSelect} = this.props
-    let emailComponents = emails.map(email => (
+    let {emails, onItemSelect, onItemDelete} = this.props;
+    let emailComponents = emails.map(email =>
       <li key={email.id}>
-        <EmailListItem email={email} onSelect={onItemSelect} />
+        <EmailListItem
+          email={email}
+          onDelete={onItemDelete}
+          onSelect={onItemSelect}
+        />
       </li>
-    ))
+    );
 
     return <ul className="email-list">{emailComponents}</ul>
   }
