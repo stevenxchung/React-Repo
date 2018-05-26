@@ -78,6 +78,13 @@ export default class App extends Component {
     });
   }
 
+  _handleItemDelete = (emailId) => {
+    this.setState(({emails}) => ({
+      // Delete the email by returning a filtered list that doesn't included it
+      emails: emails.filter(email => email.id !== emailId)
+    }));
+  }
+
   render () {
     let {emails, selectedEmailId} = this.state;
     let selectedEmail = emails.find(email => email.id === selectedEmailId);
@@ -96,6 +103,7 @@ export default class App extends Component {
       <main className="app">
         <EmailList
           emails={emails}
+          onItemDelete={this._handleItemDelete}
           onItemSelect={this._handleItemSelect}
         />
         {emailViewComponent}
