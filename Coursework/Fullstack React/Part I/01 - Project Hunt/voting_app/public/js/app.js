@@ -8,6 +8,16 @@ class ProductList extends React.Component {
   }
 }
 
+class Product extends React.Component {
+  render() {
+    return (
+      <div>
+
+      </div>
+    );
+  }
+}
+
 ReactDOM.render(
   <ProductList />,
   document.getElementById('content')
