@@ -12,8 +12,6 @@
   "private": true,
   "devDependencies": {
     "concurrently": "2.2.0",
-    "eslint": "^4.19.1",
-    "eslint-plugin-react": "^7.9.1",
     "live-server": "https://github.com/acco/live-server/tarball/master"
   }
 }
