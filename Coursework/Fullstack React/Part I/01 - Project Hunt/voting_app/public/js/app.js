@@ -1,15 +1,15 @@
 class ProductList extends React.Component {
-  render() {
+  render () {
     return (
       <div className="ui unstackable items">
-        Hello, friend! I am a basic React component.
+        <Product />
       </div>
-    );
+    )
   }
 }
 
 class Product extends React.Component {
-  render() {
+  render () {
     return (
       <div className="item">
         <div className='image'>
@@ -29,11 +29,11 @@ class Product extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
 ReactDOM.render(
   <ProductList />,
   document.getElementById('content')
-);
+)
