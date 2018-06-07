@@ -1,20 +1,18 @@
 {
-  "name": "voting_app",
-  "version": "1.1.0",
-  "author": "Fullstack.io",
-  "scripts": {
-    "go": "open http://localhost:3000; npm run server",
-    "e2e": "nightwatch",
-    "test": "./node_modules/.bin/concurrently -k 'npm run server' 'npm run e2e'",
-    "start": "npm run server",
-    "server": "live-server public --host=localhost --port=3000 --middleware=./disable-browser-cache.js"
-  },
+  "name": "fullstack-react-code",
+  "version": "17.0.0",
+  "description": "All the code used in the book",
   "private": true,
-  "devDependencies": {
-    "concurrently": "2.2.0",
-    "live-server": "https://github.com/acco/live-server/tarball/master"`
+  "scripts": {
+    "install-all": "npm-recursive-install"
   },
-  "dependencies": {
-    "eslint": "^4.19.1"
+  "author": "Fullstack React",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
+    "recursive-install": "1.3.0"
   }
 }
