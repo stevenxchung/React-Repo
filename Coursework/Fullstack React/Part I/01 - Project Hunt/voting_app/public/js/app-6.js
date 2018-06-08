@@ -1,4 +1,3 @@
-
 class ProductList extends React.Component {
   handleProductUpVote(productId) {
     console.log(productId + ' was upvoted.');

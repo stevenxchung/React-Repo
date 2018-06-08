@@ -1,4 +1,3 @@
-
 class ProductList extends React.Component {
   render() {
     const product = Seed.products[0];

@@ -1,4 +1,3 @@
-
 class ProductList extends React.Component {
   render() {
     const productComponents = Seed.products.map((product) => (
