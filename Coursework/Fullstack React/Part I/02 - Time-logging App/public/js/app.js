@@ -5,7 +5,7 @@ class TimersDashboard extends React.Component {
         <div className='column'>
           <EditableTimerList />
           <ToggleableTimerForm
-            isOpen={false}
+            isOpen={false} // Stateful (defined here, changes over time, cannot be computed from other state or props)
           />
         </div>
       </div>
@@ -16,6 +16,7 @@ class TimersDashboard extends React.Component {
 class EditableTimerList extends React.Component {
   render() {
     return (
+      // All properties here are stateful
       <div id='timers'>
         <EditableTimer
           title='Learn React'
@@ -38,6 +39,7 @@ class EditableTimerList extends React.Component {
 
 class EditableTimer extends React.Component {
   render() {
+    // editFormOpen is stateful
     if (this.props.editFormOpen) {
       return (
         <TimerForm
@@ -62,6 +64,7 @@ class TimerForm extends React.Component {
   render() {
     const submitText = this.props.title ? 'Update' : 'Create';
     return (
+      // Forms are special state managers, so the properties here are actually stateful
       <div className='ui centered card'>
         <div className='content'>
           <div className='ui form'>
@@ -110,6 +113,7 @@ class Timer extends React.Component {
   render() {
     const elapsedString = helpers.renderElapsedString(this.props.elapsed);
     return (
+      // Properties are not stateful (passed down from parent)
       <div className='ui centered card'>
         <div className='content'>
           <div className='header'>
