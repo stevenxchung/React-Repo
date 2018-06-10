@@ -1,12 +1,31 @@
 class TimersDashboard extends React.Component {
+  state = {
+    timers: [
+      {
+        title: 'Practice Squat',
+        project: 'Gym Chores',
+        id: uuid.v4(),
+        elapsed: 5456099,
+        runningSince: Date.now()
+      },
+      {
+        title: 'Bake Squash',
+        project: 'Kitchen Chores',
+        id: uuid.v4(),
+        elapsed: 1273998,
+        runningSince: null,
+      },
+    ],
+  };
+
   render() {
     return (
       <div className='ui three column centered grid'>
         <div className='column'>
-          <EditableTimerList />
-          <ToggleableTimerForm
-            isOpen={false} // Stateful (defined here, changes over time, cannot be computed from other state or props)
+          <EditableTimerList
+            timers={this.state.timers}
           />
+          <ToggleableTimerForm />
         </div>
       </div>
     );
@@ -15,34 +34,34 @@ class TimersDashboard extends React.Component {
 
 class EditableTimerList extends React.Component {
   render() {
+    const timers = this.props.timers.map((timer) => (
+      <EditableTimer
+        key={timer.id}
+        id={timer.id}
+        title={timer.title}
+        project={timer.project}
+        elapsed={timer.elapsed}
+        runningSince={timer.runningSince}
+      />
+    ));
     return (
-      // All properties here are stateful
       <div id='timers'>
-        <EditableTimer
-          title='Learn React'
-          project='Web Domination'
-          elapsed='89886300'
-          runningSince={null}
-          editFormOpen={true}
-        />
-        <EditableTimer
-          title='Learn extreme ironing'
-          project='World Domination'
-          elapsed='3890985'
-          runningSince={null}
-          editFormOpen={false}
-        />
+        {timers}
       </div>
     );
   }
 }
 
 class EditableTimer extends React.Component {
+  state = {
+    editFormOpen: false,
+  };
+
   render() {
-    // editFormOpen is stateful
     if (this.props.editFormOpen) {
       return (
         <TimerForm
+          id={this.props.id}
           title={this.props.title}
           project={this.props.project}
         />
@@ -50,6 +69,7 @@ class EditableTimer extends React.Component {
     } else {
       return (
         <Timer
+          id={this.props.id}
           title={this.props.title}
           project={this.props.project}
           elapsed={this.props.elapsed}
@@ -127,6 +147,14 @@ class Timer extends React.Component {
 }
 
 class ToggleableTimerForm extends React.Component {
+  state = {
+    isOpen: false,
+  };
+
+  handleFormOpen = () => {
+    this.setState({ isOpen: true });
+  };
+
   render() {
     if (this.props.isOpen) {
       return (
@@ -135,7 +163,10 @@ class ToggleableTimerForm extends React.Component {
     } else {
       return (
         <div className='ui basic content center aligned segment'>
-          <button className='ui basic button icon'>
+          <button
+            className='ui basic button icon'
+            onClick={this.handleFormOpen}
+          >
             <i className='plus icon' />
           </button>
         </div>
