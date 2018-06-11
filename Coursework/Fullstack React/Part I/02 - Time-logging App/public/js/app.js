@@ -18,6 +18,19 @@ class TimersDashboard extends React.Component {
     ],
   };
 
+  // Handle creates and will be the function passed to ToggleableTimerForm
+  handleCreateFormSubmit = (timer) => {
+    this.createTimer(timer);
+  };
+
+  // Creates a new timer and appends it to the timer array of objects
+  createTimer = (timer) => {
+    const t = helpers.newTimer(timer);
+    this.setState({
+      timers: this.state.timers.concat(t),
+    });
+  };
+
   render() {
     return (
       <div className='ui three column centered grid'>
@@ -25,7 +38,9 @@ class TimersDashboard extends React.Component {
           <EditableTimerList
             timers={this.state.timers}
           />
-          <ToggleableTimerForm />
+          <ToggleableTimerForm
+            onFormSubmit={this.handleCreateFormSubmit}
+          />
         </div>
       </div>
     );
