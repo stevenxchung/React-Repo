@@ -221,12 +221,24 @@ class TimerForm extends React.Component {
 }
 
 class Timer extends React.Component {
+  componentDidMount() {
+    // setInterval() used here will invoke React's built-in forceUpdate() every 50 ms
+    this.forcedUpdateInterval = setInterval(() => this.forceUpdate(), 50);
+  }
+
+  // componentWillMount() is called before a component is removed from an app
+  componentWillMount() {
+    // Ensures forceUpdate is not called after the timer has been removed
+    clearInterval(this.forcedUpdateInterval);
+  }
+
   handleTrashClick = () => {
     this.props.onTrashClick(this.props.id);
   }
 
   render() {
-    const elapsedString = helpers.renderElapsedString(this.props.elapsed);
+    const elapsedString = helpers.renderElapsedString(this.props.elapsed, this.props.runningSince
+    );
     return (
       // Properties are not stateful (passed down from parent)
       <div className='ui centered card'>
