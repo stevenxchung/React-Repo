@@ -56,6 +56,7 @@ class TimersDashboard extends React.Component {
 
   deleteTimer = (timerId) => {
     this.setState({
+      // filter() tests each element in the array and only keeps elements that meet the criteria
       timers: this.state.timers.filter(t => t.id !== timerId),
     });
   };
