@@ -4,22 +4,22 @@ import PropTypes from 'prop-types';
 import './EmailForm.css';
 
 const DEFAULT_FORM_VALUES = {
-  from: "",
-  to: "someone@gmail.com",
-  subject: "",
-  message: ""
-}
+  from: '',
+  to: 'someone@gmail.com',
+  subject: '',
+  message: ''
+};
 
 export default class EmailForm extends Component {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired
-  }
+  };
 
   state = DEFAULT_FORM_VALUES;
 
   _updateFormFieldState = (name, e) => {
     this.setState({[name]: e.target.value});
-  }
+  };
 
   _handleSubmit = (e) => {
     e.preventDefault();
@@ -32,57 +32,57 @@ export default class EmailForm extends Component {
       // Reset form to initial values
       this.setState(DEFAULT_FORM_VALUES);
     } else {
-      alert("Fill out the form!");
+      alert('Fill out the form!');
     }
-  }
+  };
 
   render() {
     let {from, to, subject, message} = this.state;
 
     return (
-      <form className="email-form" onSubmit={this._handleSubmit}>
+      <form className='email-form' onSubmit={this._handleSubmit}>
         <fieldset>
-          <label htmlFor="from">From:</label>
+          <label htmlFor='from'>From:</label>
           <input
-            type="email"
-            id="from"
+            type='email'
+            id='from'
             value={from}
-            placeholder="you@gmail.com"
-            onChange={this._updateFormFieldState.bind(this, "from")}
+            placeholder='you@gmail.com'
+            onChange={this._updateFormFieldState.bind(this, 'from')}
           />
         </fieldset>
         <fieldset>
-          <label htmlFor="to">To:</label>
+          <label htmlFor='to'>To:</label>
           <input
-            type="email"
-            id="to"
+            type='email'
+            id='to'
             value={to}
-            placeholder="someone@.gmail.com"
-            onChange={this._updateFormFieldState.bind(this, "to")}
+            placeholder='someone@.gmail.com'
+            onChange={this._updateFormFieldState.bind(this, 'to')}
           />
         </fieldset>
         <fieldset>
-          <label htmlFor="subject">subject:</label>
+          <label htmlFor='subject'>subject:</label>
           <input
-            type="text"
-            id="subject"
+            type='text'
+            id='subject'
             value={subject}
-            placeholder="Insert subject here"
-            onChange={this._updateFormFieldState.bind(this, "subject")}
+            placeholder='Insert subject here'
+            onChange={this._updateFormFieldState.bind(this, 'subject')}
           />
         </fieldset>
         <fieldset>
-          <label htmlFor="message">Message:</label>
+          <label htmlFor='message'>Message:</label>
           <textarea
-            id="message"
+            id='message'
             value={message}
-            placeholder="[Insert message here]"
-            onChange={this._updateFormFieldState.bind(this, "message")}
+            placeholder='[Insert message here]'
+            onChange={this._updateFormFieldState.bind(this, 'message')}
           />
         </fieldset>
 
         <footer>
-          <button type="submit">Send email</button>
+          <button type='submit'>Send email</button>
         </footer>
       </form>
     );

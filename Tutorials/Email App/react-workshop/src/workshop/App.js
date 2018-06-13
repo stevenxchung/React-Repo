@@ -7,6 +7,28 @@ import EmailForm from './components/EmailForm';
 
 import './App.css';
 
+const EmailViewWrapper = ({
+  selectedEmail,
+  onClose,
+  onDelete,
+}) => {
+  let component = null;
+
+  if (selectedEmail) {
+    component = (
+      <article className="app__view">
+        <EmailView
+          email={selectedEmail}
+          onClose={onClose}
+          onDelete={onDelete}
+        />
+      </article>
+    );
+  }
+
+  return component;
+};
+
 export default class App extends Component {
   static propTypes = {
     pollInterval: PropTypes.number
@@ -130,28 +152,27 @@ export default class App extends Component {
   render() {
     let {emails, selectedEmailId} = this.state;
     let selectedEmail = emails.find(email => email.id === selectedEmailId);
-    let emailViewComponent;
-
-    if (selectedEmail) {
-      emailViewComponent = (
-        <EmailView
-          email={selectedEmail}
-          onClose={this._handleEmailViewClose}
-          onDelete={this._handleItemDelete.bind(this, selectedEmailId)}
-        />
-      );
-    }
 
     return (
       <main className="app">
-        <EmailList
-          emails={emails}
-          onItemSelect={this._handleItemSelect}
-          onItemDelete={this._handleItemDelete}
-          selectedEmailId={selectedEmailId}
-        />
-        {emailViewComponent}
-        <EmailForm onSubmit={this._handleFormSubmit} />
+        <div className="app__page">
+          <div className="app__list">
+            <EmailList
+              emails={emails}
+              onItemSelect={this._handleItemSelect}
+              onItemDelete={this._handleItemDelete}
+              selectedEmailId={selectedEmailId}
+            />
+          </div>
+          <EmailViewWrapper
+            selectedEmail={selectedEmail}
+            onClose={this._handleEmailViewClose}
+            onDelete={this._handleItemDelete.bind(this, selectedEmailId)}
+          />
+          <div className="app__form">
+            <EmailForm onSubmit={this._handleFormSubmit} />
+          </div>
+        </div>
       </main>
     );
   }

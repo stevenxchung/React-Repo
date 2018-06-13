@@ -12,7 +12,7 @@ export default class EmailList extends Component {
     emails: PropTypes.arrayOf(EMAIL_PROP_TYPE),
     onItemDelete: PropTypes.func.isRequired,
     onItemSelect: PropTypes.func.isRequired
-  }
+  };
 
   render() {
     let {emails, onItemSelect, onItemDelete} = this.props;
@@ -26,6 +26,10 @@ export default class EmailList extends Component {
       </li>
     );
 
-    return <ul className="email-list">{emailComponents}</ul>
+    return (
+      <ul className="email-list">
+        {emailComponents}
+      </ul>
+    );
   }
 }

@@ -8,18 +8,19 @@ import './EmailView.css';
 export default class EmailView extends Component {
   static propTypes = {
     email: EMAIL_PROP_TYPE.isRequired,
-    onClose: PropTypes.func.isRequired
-  }
+    onClose: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired
+  };
 
   _handleClose = (e) => {
     e.stopPropagation();
     this.props.onClose();
-  }
+  };
 
   _handleDelete = (e) => {
     e.stopPropagation();
     this.props.onDelete();
-  }
+  };
 
   render() {
     let {email: {subject, from, date, message}} = this.props;

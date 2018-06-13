@@ -13,7 +13,7 @@ var fs = require('fs'),
     // Using a JSON file as our "database"
     EMAILS_FILE = path.join(__dirname, 'data/emails.json'),
 
-    port = process.env.PORT || 9090;
+    port = process.env.PORT || 3000;
 
 function getEmails(callback) {
     fs.readFile(EMAILS_FILE, function(err, fileContents) {
@@ -51,7 +51,7 @@ app.use(function(req, res, next) {
 // routes that end in /emails
 router.route('/emails')
 
-    // create an email (accessed via POST to http://localhost:9090/emails)
+    // create an email (accessed via POST to http://localhost:3000/emails)
     .post(function(req, res) {
         getEmails(function(emails) {
             var newEmail = assign({
@@ -68,7 +68,7 @@ router.route('/emails')
         });
     })
 
-    // get all the emails (access via GET from http://localhost:9090/emails)
+    // get all the emails (access via GET from http://localhost:3000/emails)
     .get(function(req, res) {
         getEmails(function(emails) {
             // Return back the full list of emails
@@ -84,7 +84,7 @@ router.route('/emails')
 // routes that end in emails/:emailId
 router.route('/emails/:emailId')
 
-    // get the email with this id (accessed via GET from http://localhost:9090/emails/:emailId)
+    // get the email with this id (accessed via GET from http://localhost:3000/emails/:emailId)
     .get(function(req, res) {
         getEmails(function(emails) {
             var emailIdToGet = +req.params.emailId,
@@ -96,7 +96,7 @@ router.route('/emails/:emailId')
         });
     })
 
-    // update the email this id (accessed via PUT on http://localhost:9090/emails/:emailId)
+    // update the email this id (accessed via PUT on http://localhost:3000/emails/:emailId)
     .put(function(req, res) {
         getEmails(function(emails) {
             var emailIdToUpdate = +req.params.emailId,
@@ -119,7 +119,7 @@ router.route('/emails/:emailId')
         });
     })
 
-    // delete the email this id (accessed via PUT on http://localhost:9090/emails/:emailId)
+    // delete the email this id (accessed via PUT on http://localhost:3000/emails/:emailId)
     .delete(function(req, res) {
         getEmails(function(emails) {
             var emailIdToDelete = +req.params.emailId,

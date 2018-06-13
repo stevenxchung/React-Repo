@@ -11,7 +11,7 @@ export default class EmailListItem extends Component {
     email: EMAIL_PROP_TYPE.isRequired,
     onDelete: PropTypes.func.isRequired,
     onSelect: PropTypes.func
-  }
+  };
 
   _handleClick = (e) => {
     let {email, onSelect} = this.props;
@@ -20,12 +20,12 @@ export default class EmailListItem extends Component {
       e.stopPropagation();
       onSelect(email.id);
     }
-  }
+  };
 
   _handleDelete = (e) => {
     e.stopPropagation();
     this.props.onDelete(this.props.email.id);
-  }
+  };
 
   render() {
     let {email: {from, subject}} = this.props;
