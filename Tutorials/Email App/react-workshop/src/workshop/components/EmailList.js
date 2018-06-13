@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import EmailListItem from './EmailListItem';
 import {EMAIL_PROP_TYPE} from './constants';
 
-// import component CSS file
 import './EmailList.css';
 
 export default class EmailList extends Component {
@@ -20,8 +19,8 @@ export default class EmailList extends Component {
       <li key={email.id}>
         <EmailListItem
           email={email}
-          onDelete={onItemDelete}
           onSelect={onItemSelect}
+          onDelete={onItemDelete}
         />
       </li>
     );

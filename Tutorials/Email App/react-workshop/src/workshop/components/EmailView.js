@@ -15,12 +15,12 @@ export default class EmailView extends Component {
   _handleClose = (e) => {
     e.stopPropagation();
     this.props.onClose();
-  };
+  }
 
   _handleDelete = (e) => {
     e.stopPropagation();
     this.props.onDelete();
-  };
+  }
 
   render() {
     let {email: {subject, from, date, message}} = this.props;
@@ -28,9 +28,15 @@ export default class EmailView extends Component {
 
     return (
       <section className="email-view">
-        <h1>{subject}</h1>
-        <h2>From: <a href={`mailto:${from}`}>{from}</a></h2>
-        <h3>{date}</h3>
+        <h1>
+          {subject}
+        </h1>
+        <h2>
+          From: <a href={`mailto:${from}`}>{from}</a>
+        </h2>
+        <h3>
+          {date}
+        </h3>
         <div dangerouslySetInnerHTML={rawMessage} />
         <button onClick={this._handleDelete}>Delete</button>
         <button onClick={this._handleClose}>Close</button>
