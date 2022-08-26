@@ -1,4 +1,4 @@
-<body>
+<!-- <body>
   <div id="root"></div>
   <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
@@ -45,5 +45,57 @@
     }
 
     ReactDOM.render(<App />, document.getElementById('root'))
+  </script>
+</body> -->
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById('root');
+
+    const Name = ({name, onNameChange}) => {
+      return (
+        <div>
+          <label>Name: </label>
+          <input value={name} onChange={onNameChange} />
+        </div>
+      );
+    };
+
+    const FavoriteAnimal = ({animal, onAnimalChange}) => {
+      return (
+        <div>
+          <label>Favorite Animal: </label>
+          <input value={animal} onChange={onAnimalChange} />
+        </div>
+      );
+    };
+
+    const Display = ({name, animal}) => {
+      return <div>{`Hey ${name}, your favorite animal is ${animal}!`}</div>;
+    };
+
+    const App = () => {
+      const [name, setName] = React.useState('');
+      const [animal, setAnimal] = React.useState('');
+      return (
+        <form>
+          <Name
+            name={name}
+            onNameChange={(event) => setName(event.target.value)}
+          />
+          <FavoriteAnimal
+            animal={animal}
+            onAnimalChange={(event) => setAnimal(event.target.value)}
+          />
+          <Display name={name} animal={animal} />
+        </form>
+      );
+    };
+
+    ReactDOM.render(<App />, root);
   </script>
 </body>

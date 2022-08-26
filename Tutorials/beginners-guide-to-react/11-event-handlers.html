@@ -1,20 +1,20 @@
-<body>
+<!-- <body>
   <div id="root"></div>
   <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
-    const rootElement = document.getElementById('root')
+    const rootElement = document.getElementById('root');
 
-    const state = {eventCount: 0, username: ''}
+    const state = {eventCount: 0, username: ''};
 
     function App() {
       function handleClick() {
-        setState({eventCount: state.eventCount + 1})
+        setState({eventCount: state.eventCount + 1});
       }
 
       function handleChange(event) {
-        setState({username: event.target.value})
+        setState({username: event.target.value});
       }
 
       return (
@@ -28,18 +28,65 @@
             <input onChange={handleChange} />
           </p>
         </div>
-      )
+      );
     }
 
     function setState(newState) {
-      Object.assign(state, newState)
-      renderApp()
+      Object.assign(state, newState);
+      renderApp();
     }
 
     function renderApp() {
-      ReactDOM.render(<App />, document.getElementById('root'))
+      ReactDOM.render(<App />, document.getElementById('root'));
     }
 
-    renderApp()
+    renderApp();
+  </script>
+</body> -->
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById('root');
+
+    const state = {eventCount: 0, username: ''};
+
+    const App = () => {
+      const handleClick = () => {
+        setState({eventCount: state.eventCount + 1});
+      };
+
+      const handleChange = (event) => {
+        console.log(event);
+        setState({username: event.target.value});
+      };
+
+      return (
+        <div>
+          <p>There have been {state.eventCount} events.</p>
+          <p>
+            <button onClick={handleClick}>Click Me</button>
+          </p>
+          <p>You typed: {state.username}</p>
+          <p>
+            <input onChange={handleChange} />
+          </p>
+        </div>
+      );
+    };
+
+    const setState = (newState) => {
+      Object.assign(state, newState);
+      renderApp();
+    };
+
+    const renderApp = () => {
+      ReactDOM.render(<App />, root);
+    };
+
+    renderApp();
   </script>
 </body>

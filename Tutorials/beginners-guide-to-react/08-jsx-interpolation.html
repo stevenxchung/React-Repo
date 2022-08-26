@@ -1,4 +1,4 @@
-<body>
+<!-- <body>
   <div id="root"></div>
   <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
@@ -9,8 +9,8 @@
         <div>
           {`The text "${text}" has `}
           {text.length ? <strong>{text.length}</strong> : 'No'}
-          {' characters'}
         </div>
+        {' characters'} 
       )
     }
 
@@ -22,5 +22,35 @@
     )
 
     ReactDOM.render(element, document.getElementById('root'))
+  </script>
+</body> -->
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById('root');
+
+    const CharacterCount = ({text = ''}) => {
+      return (
+        <div>
+          {`The text "${text}" has `}
+          {text.length ? <strong>{text.length}</strong> : 'No'}
+          {' characters'}
+        </div>
+      );
+    };
+
+    const e = (
+      <>
+        <CharacterCount text='Hello React YEET!' />
+        <CharacterCount />
+      </>
+    );
+
+    ReactDOM.render(e, root);
   </script>
 </body>
