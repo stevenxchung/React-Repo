@@ -1,0 +1,64 @@
+{
+  "projectName": "learn-react",
+  "projectOwner": "kentcdodds",
+  "repoType": "github",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "kentcdodds",
+      "name": "Kent C. Dodds",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1500684?v=3",
+      "profile": "https://kentcdodds.com",
+      "contributions": [
+        "code",
+        "doc",
+        "infra",
+        "test"
+      ]
+    },
+    {
+      "login": "nathanhannig",
+      "name": "Nathan Hannig",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/8210763?v=4",
+      "profile": "https://nathanhannig.com",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    },
+    {
+      "login": "ta1188",
+      "name": "Trevor A",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/18534488?v=4",
+      "profile": "https://github.com/ta1188",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "brennongs",
+      "name": "Brennon Schow",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24623425?v=4",
+      "profile": "http://brennongs.dev",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "karlhorky",
+      "name": "Karl Horky",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1935696?v=4",
+      "profile": "https://upleveled.io",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
