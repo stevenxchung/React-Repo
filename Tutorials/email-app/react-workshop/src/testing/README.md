@@ -1,3 +1,0 @@
-# React / Redux Testing FUNdamentals Workshop
-
-Coming soon...
