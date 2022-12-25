@@ -38,15 +38,16 @@ import React from 'react'
 // NOTE: even though it's called the "inputs array," react does not actually
 // pass those values as inputs to your effect callback. It's more conceptual.
 
-function Counter({step = 1, initialCount = 0}) {
+function Counter({ step = 1, initialCount = 0 }) {
   // 🐨 👇 change this from React.useState(value) to React.useState(() => value)
-  const [count, setCount] = React.useState(
+  const [count, setCount] = React.useState(() =>
     Number(window.localStorage.getItem('count') || initialCount),
   )
   const increment = () => setCount(c => c + step)
   React.useEffect(() => {
+    console.log('Called!')
     window.localStorage.setItem('count', count)
-  })
+  }, [count])
   // 🐨 👆 on the line above, add the "inputs array" to signal to React that
   // this effect depends on `count`
   return <button onClick={increment}>{count}</button>

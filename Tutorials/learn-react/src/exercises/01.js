@@ -16,6 +16,12 @@ function SayHello(props) {
     </div>
   )
 }
+
+SayHello.propTypes = {
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+};
+
 // 🐨 Add a property called `propTypes` to the SayHello function
 // which is an object that has a key for each prop we want to
 // validate and is assigned to the type from PropTypes.

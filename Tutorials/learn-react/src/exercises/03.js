@@ -19,12 +19,15 @@ import React from 'react'
 
 // 🐨 Accept props to the `App` component
 function App() {
+  const logClicks = () => console.log('Clicked!')
+  const onInputChange = (event) => console.log(`Input: ${event.target.value}`)
+
   return (
     <div>
       {/* 🐨 apply the appropriate click handler here */}
-      <button>Click me!</button>
+      <button onClick={logClicks}>Click me!</button>
       {/* 🐨 apply the appropriate change handler here */}
-      <input />
+      <input onChange={onInputChange} />
     </div>
   )
 }
