@@ -1,0 +1,77 @@
+<body>
+  <div id="root">
+    <button class="open-modal" type="button" aria-label="Toggle modal">
+      Toggle Modal
+    </button>
+    <div class="modal">
+      <h1>Modal</h1>
+      <p>This modal was opened!</p>
+      <button class="close-modal" type="button" aria-label="Close modal">
+        OK
+      </button>
+    </div>
+  </div>
+  <style>
+    * {
+      font-family: monospace;
+    }
+    #root {
+      background-color: black;
+      height: 1500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .modal {
+      position: fixed;
+      top: 40%;
+      width: 50%;
+      border: 0.2rem solid white;
+      color: white;
+      background-color: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem;
+
+      opacity: 0;
+      transform: scale(1.15);
+      will-change: transform, opacity;
+      transition: transform 1s cubic-bezier(0.465, 0.183, 0.153, 0.946),
+        opacity 1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+    }
+    .modal--appear {
+      opacity: 1;
+    }
+
+    .open-modal {
+      top: 33%;
+      position: absolute;
+      width: 50%;
+      color: white;
+      background-color: black;
+      border: 0.2rem solid white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    .close-modal {
+      margin: 1rem 1rem;
+      color: white;
+      background-color: violet;
+      border: 0px;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  </style>
+  <script type="text/javascript">
+    const toggleMenuNode = document.querySelector('.open-modal');
+    const okNode = document.querySelector('.close-modal');
+    const toggleMenu = () => {
+      document.querySelector('.modal').classList.toggle('modal--appear');
+    };
+    toggleMenuNode.addEventListener('click', toggleMenu);
+    okNode.addEventListener('click', toggleMenu);
+  </script>
+</body>

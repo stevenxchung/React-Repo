@@ -1,0 +1,51 @@
+<body>
+  <div id="root">
+    <div class="box" id="mammals"></div>
+  </div>
+  <style>
+    .box {
+      border: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .box-small {
+      border: 1px solid red;
+    }
+  </style>
+  <script type="text/javascript">
+    const root = document.getElementById('root');
+    const e = document.createElement('h1');
+    e.textContent = 'YEET!';
+    root.appendChild(e);
+
+    const animals = [
+      {
+        type: 'Dog',
+        mammal: true,
+      },
+      {
+        type: 'Snake',
+        mammal: false,
+      },
+      {
+        type: 'Cheetah',
+        mammal: true,
+      },
+    ];
+
+    const mammals = animals
+      .filter((animals) => animals.mammal)
+      .map((mammal) => {
+        const name = mammal.type;
+
+        document.querySelector(
+          '#mammals'
+        ).innerHTML += `<h1 class="box-small">${name}</h1>`;
+        return name;
+      });
+    console.log(mammals);
+  </script>
+</body>

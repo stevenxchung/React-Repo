@@ -1,0 +1,78 @@
+<body>
+  <div id="root">
+    <div class="container">
+      <input class="dropdown-input" type="text" placeholder="Select option" />
+      <div class="dropdown-container">
+        <ul class="dropdown-options"></ul>
+      </div>
+    </div>
+  </div>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 33%;
+    }
+
+    .dropdown-container {
+      background-color: black;
+    }
+    .dropdown--toggle {
+      display: none;
+    }
+
+    .dropdown-input {
+      display: flex;
+      cursor: pointer;
+      padding-left: 1rem;
+      font-size: 1rem;
+      font-family: monospace;
+    }
+    .dropdown-options {
+      color: white;
+      list-style: none;
+      padding-left: 1rem;
+      font-size: 1rem;
+      font-family: monospace;
+    }
+    .dropdown-item {
+      margin: 1rem 0;
+      cursor: pointer;
+    }
+  </style>
+  <script type="text/javascript">
+    const toggleEvent = () => {
+      document
+        .querySelector('.dropdown-options')
+        .classList.toggle('dropdown--toggle');
+    };
+    const selectOption = (event) => {
+      document.querySelector('.dropdown-input').value =
+        event.target.textContent;
+    };
+
+    document
+      .querySelector('.dropdown-input')
+      .addEventListener('click', toggleEvent);
+
+    const fetchAndGenerate = async () => {
+      const fakeUsersApiResponse = await fetch(
+        'https://randomuser.me/api/?results=10'
+      );
+      const fakeUsers = await fakeUsersApiResponse.json();
+      console.log(fakeUsers);
+      fakeUsers.results.map((user) => {
+        document
+          .querySelector('.dropdown-options')
+          .insertAdjacentHTML(
+            'afterbegin',
+            `<li class="dropdown-item">${user.location.country}</li>`
+          );
+        document
+          .querySelector('.dropdown-item')
+          .addEventListener('click', selectOption);
+      });
+    };
+    fetchAndGenerate();
+  </script>
+</body>

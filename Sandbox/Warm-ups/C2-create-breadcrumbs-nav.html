@@ -1,0 +1,52 @@
+<body>
+  <div id="root">
+    <nav class="navigation">
+      <button class="menu" type="button" aria-label="Toggle menu">Menu</button>
+      <ul class="menu-list"></ul>
+    </nav>
+  </div>
+  <style>
+    * {
+      font-size: 1rem;
+      font-family: monospace;
+    }
+    body {
+      background-color: black;
+    }
+
+    .navigation {
+      background-color: white;
+      display: flex;
+      align-items: center;
+    }
+
+    .menu {
+      margin-left: 1rem;
+      background-color: transparent;
+      font-size: 1.5rem;
+    }
+
+    .menu-list {
+      width: 100%;
+      background-color: white;
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+    .menu-list li {
+      margin: 0.5rem 0;
+    }
+    .menu-list a {
+      text-decoration: none;
+    }
+  </style>
+  <script type="text/javascript">
+    const labels = ['Home', 'Product', 'Company', 'Contact'];
+    const menu = document.querySelector('.menu');
+    const menuList = document.querySelector('.menu-list');
+    labels.map((label) => {
+      menuList.innerHTML += `<li><a href="#">${label}</a></li>`;
+    });
+  </script>
+</body>

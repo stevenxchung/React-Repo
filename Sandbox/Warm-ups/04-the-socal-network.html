@@ -1,0 +1,59 @@
+<body>
+  <div id="root">
+    <div class="container"></div>
+  </div>
+  <style>
+    .container {
+      border: 0.25rem solid #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-content: center;
+    }
+    .user-container {
+      border: 0.1rem solid #333;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      margin: 1rem;
+      width: 50%;
+      height: 5rem;
+    }
+    .profile-pic {
+      border: 0.1rem solid #333;
+      border-radius: 50%;
+      margin-left: 1rem;
+      width: 5rem;
+      display: flex;
+      justify-content: center;
+    }
+    .username {
+      display: flex;
+      margin-right: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+  <script type="text/javascript">
+    const fetchAndGenerate = async () => {
+      const fakeUsersApiResponse = await fetch(
+        'https://randomuser.me/api/?results=10'
+      );
+      const fakeUsers = await fakeUsersApiResponse.json();
+      let containerNode = document.querySelector('.container');
+      fakeUsers.results.map((user) => {
+        containerNode.insertAdjacentHTML(
+          'afterbegin',
+          `<div class="user-container">
+            <img class="profile-pic" src="${user.picture.large}">
+            <div class="username">${user.name.first} ${user.name.last}</div>
+          </div>`
+        );
+      });
+    };
+    fetchAndGenerate();
+  </script>
+</body>
