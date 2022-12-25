@@ -1,0 +1,85 @@
+<body>
+  <div id="root"></div>
+  <style>
+    * {
+      font-family: monospace;
+    }
+    #root {
+      border: 2px solid black;
+      padding: 1rem;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .trigger,
+    .clear {
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 2rem;
+      padding: 1rem;
+      margin: 1rem;
+      width: 200px;
+      cursor: pointer;
+      box-shadow: 2px 2px 0.5rem;
+    }
+    .label {
+      font-size: 5em;
+      display: block;
+    }
+  </style>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    const root = document.querySelector('#root');
+
+    const App = () => {
+      let interval = 0;
+      const [state, setState] = React.useState({lapse: 0, running: false});
+
+      const handleTrigger = () => {
+        if (state.running) {
+          clearInterval(() => interval);
+        } else {
+          const startTime = Date.now() - state.lapse;
+          interval = setInterval(() => {
+            setState(() => {
+              return {lapse: Date.now() - startTime};
+            });
+          });
+          console.log(interval);
+        }
+        setState(() => {
+          return {running: !state.running};
+        });
+      };
+
+      const handleClear = () => {
+        console.log('Cleared!');
+        clearInterval(() => interval);
+        setState(() => {
+          return {running: false, lapse: 0};
+        });
+      };
+
+      return (
+        <div className='container'>
+          <label className='label' htmlFor='Time'>
+            {state.lapse}ms
+          </label>
+          <button className='trigger' type='button' onClick={handleTrigger}>
+            {state.running ? 'Stop' : 'Start'}
+          </button>
+          <button className='clear' type='button' onClick={handleClear}>
+            Clear
+          </button>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<App />, root);
+  </script>
+</body>

@@ -1,0 +1,35 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.7.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    const root = document.querySelector('#root');
+
+    // ~~~~~ Vanilla JS ~~~~~
+    // const e = document.createElement('div');
+    // div.textContent = new Date().toISOString();
+    // div.className = 'container';
+
+    // ~~~~~ React ~~~~~
+    // const e = React.createElement(
+    //   'div',
+    //   {
+    //     className: 'container',
+    //   },
+    //   'Current Time ',
+    //   new Date().toISOString()
+    // );
+
+    // ~~~~~ React + JSX ~~~~~
+    const App = () => (
+      <div className='container'>
+        <div>Current Time</div>
+        <span>{new Date().toISOString()}</span>
+        <div>YEET!</div>
+      </div>
+    );
+
+    ReactDOM.render(<App />, root);
+  </script>
+</body>
